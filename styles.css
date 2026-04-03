@@ -212,27 +212,6 @@ a:hover {
   overflow-x: clip;
 }
 
-@media (min-width: 960px) {
-  .hero {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    grid-template-rows: minmax(0, 1fr);
-    gap: var(--space-5);
-    align-items: stretch;
-    align-content: stretch;
-    min-height: clamp(28rem, 72vh, 48rem);
-    overflow: hidden;
-  }
-
-  .hero__image {
-    height: 100%;
-    min-height: 0;
-  }
-
-  .hero__image img {
-    transform: scale(1.3);
-  }
-}
-
 .hero__content {
   min-width: 0;
   align-self: start;
@@ -258,6 +237,46 @@ a:hover {
   object-position: bottom center;
   transform: scale(1.22);
   transform-origin: bottom center;
+}
+
+@media (min-width: 960px) {
+  .hero {
+    position: relative;
+    display: block;
+    min-height: clamp(28rem, 72vh, 48rem);
+    overflow: hidden;
+  }
+
+  .hero__content {
+    position: relative;
+    z-index: 1;
+    width: calc((100% - var(--space-5)) / 2);
+    max-width: calc((100% - var(--space-5)) / 2);
+    margin-right: auto;
+    padding-right: 0;
+  }
+
+  .hero__image {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: auto;
+    top: auto;
+    width: calc((100% - var(--space-5)) / 2);
+    max-width: calc((100% - var(--space-5)) / 2);
+    display: block;
+    margin: 0;
+    min-height: 0;
+  }
+
+  .hero__image img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    object-position: bottom center;
+    transform: scale(1.38);
+    transform-origin: bottom center;
+  }
 }
 
 .hero__eyebrow {
