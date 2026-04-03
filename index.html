@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Мария Фищева — Creative Developer. Сайты, UX и AI-решения с характером." />
+  <title>Мария Фищева — Creative Developer / Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">К содержанию</a>
+
+  <header class="site-header">
+    <div class="site-header__inner container">
+      <a class="logo" href="#">Мария Фищева</a>
+      <nav class="nav" aria-label="Основная навигация">
+        <a href="#about">Обо мне</a>
+        <a href="#skills">Направления</a>
+        <a href="#projects">Работы</a>
+        <a href="#contact">Контакты</a>
+      </nav>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-mobile" aria-label="Открыть меню">
+        <span></span><span></span>
+      </button>
+    </div>
+    <div class="nav-mobile" id="nav-mobile" hidden>
+      <a href="#about">Обо мне</a>
+      <a href="#skills">Направления</a>
+      <a href="#approach">Подход</a>
+      <a href="#projects">Работы</a>
+      <a href="#why">Почему я</a>
+      <a href="#contact">Контакты</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="hero" aria-labelledby="hero-title">
+      <div class="hero__content">
+        <p class="hero__eyebrow">Creative Developer / Portfolio / Web &amp; AI Solutions</p>
+        <h1 id="hero-title" class="hero__title">
+          Я создаю сайты и digital-решения,
+          которые цепляют визуально
+          и продуманы до логики
+        </h1>
+        <p class="hero__lead">
+          Выстраиваю стиль, ощущение и структуру так,
+          чтобы в проект хотелось погружаться и к нему хотелось возвращаться.
+        </p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="#projects">Смотреть кейсы</a>
+          <a class="btn btn--ghost" href="#cta">Обсудить проект</a>
+        </div>
+      </div>
+
+      <div class="hero__image">
+        <img src="images/hero.png" alt="hero" />
+      </div>
+    </section>
+
+    <section id="about" class="section section--about">
+      <div class="container">
+        <h2 class="section__title">Я не&nbsp;просто делаю сайты — я&nbsp;выстраиваю цифровой опыт</h2>
+        <div class="about__grid">
+          <div class="about__text prose">
+            <p>Я — Мария Фищева. Работаю на&nbsp;стыке сайтов, визуала, UX и&nbsp;AI-решений — там, где проекту уже мало просто «быть красивым», и&nbsp;важно, чтобы&nbsp;он ощущался цельно, современно и&nbsp;с&nbsp;характером.</p>
+            <p>Мне близок подход вайбкодинга: когда&nbsp;в&nbsp;проекте есть не&nbsp;только структура и&nbsp;логика, но&nbsp;и&nbsp;настроение, ритм, подача, энергия. Для&nbsp;меня хороший сайт — это не&nbsp;набор блоков, а&nbsp;состояние, в&nbsp;которое попадает человек, когда&nbsp;открывает страницу.</p>
+            <p>Мой подход собирался из&nbsp;разных направлений: курс Ксении Барановой «Вайбкодинг» (2026), обучение по&nbsp;созданию GPT-агентов и&nbsp;AI-ботов, практика в&nbsp;дизайне инфографики (курс Бека) и&nbsp;обучение в&nbsp;школе Юдаева.</p>
+            <p>Поэтому я&nbsp;смотрю на&nbsp;проект сразу в&nbsp;нескольких слоях: как он выглядит, как читается, как ведёт пользователя и&nbsp;как может работать на&nbsp;автоматизацию задач.</p>
+            <p>Мне интересно делать не&nbsp;просто сайты, а&nbsp;digital-решения, где&nbsp;соединяются стиль, смысл и&nbsp;польза для&nbsp;бизнеса. Особенно там, где&nbsp;можно внедрить AI не&nbsp;ради тренда, а&nbsp;ради реального результата: автоматизировать общение, обработку заявок и&nbsp;повторяющиеся процессы.</p>
+          </div>
+          <aside class="about__aside">
+            <p class="about__tagline">Я соединяю:</p>
+            <ul class="about__merge">
+              <li>код</li>
+              <li>визуал</li>
+              <li>UX</li>
+              <li>AI</li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="section section--skills">
+      <div class="container">
+        <h2 class="section__title">Мои направления</h2>
+        <ul class="grid-cards">
+          <li class="card">
+            <h3 class="card__title">Лендинги</h3>
+            <p class="card__text">Страницы, которые удерживают внимание, задают ритм и&nbsp;ведут пользователя по&nbsp;смыслу</p>
+          </li>
+          <li class="card">
+            <h3 class="card__title">Портфолио и личные сайты</h3>
+            <p class="card__text">Сайты, раскрывающие не&nbsp;только проекты, но&nbsp;и&nbsp;личный стиль и&nbsp;уровень</p>
+          </li>
+          <li class="card">
+            <h3 class="card__title">Визуальные концепции</h3>
+            <p class="card__text">Когда важна не&nbsp;просто структура, а&nbsp;атмосфера, характер и&nbsp;подача</p>
+          </li>
+          <li class="card">
+            <h3 class="card__title">AI + Web</h3>
+            <p class="card__text">Использую нейросети как&nbsp;инструмент усиления идей и&nbsp;автоматизации</p>
+          </li>
+          <li class="card">
+            <h3 class="card__title">UX и логика</h3>
+            <p class="card__text">Продумываю путь пользователя: от&nbsp;первого взгляда до&nbsp;действия</p>
+          </li>
+          <li class="card">
+            <h3 class="card__title">Запуск проектов</h3>
+            <p class="card__text">Собираю цельную первую версию без&nbsp;потери качества и&nbsp;смысла</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="approach" class="section section--approach">
+      <div class="container">
+        <h2 class="section__title">Как строится работа</h2>
+        <ol class="steps">
+          <li class="steps__item">
+            <span class="steps__num">01</span>
+            <h3 class="steps__title">Сначала ощущение</h3>
+            <p class="steps__text">Определяю настроение и&nbsp;вайб, который должен передавать проект</p>
+          </li>
+          <li class="steps__item">
+            <span class="steps__num">02</span>
+            <h3 class="steps__title">Затем структура</h3>
+            <p class="steps__text">Выстраиваю логику, сценарий и&nbsp;путь пользователя</p>
+          </li>
+          <li class="steps__item">
+            <span class="steps__num">03</span>
+            <h3 class="steps__title">Потом реализация</h3>
+            <p class="steps__text">Когда есть система и&nbsp;стиль — результат получается точным и&nbsp;выразительным</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="projects" class="section section--projects">
+      <div class="container">
+        <h2 class="section__title">Выбранные работы</h2>
+        <ul class="project-list">
+          <li class="project">
+            <div class="project__meta">
+              <span class="project__label">Проект 1</span>
+              <h3 class="project__title">AI Landing Experience</h3>
+            </div>
+            <p class="project__desc">Лендинг для&nbsp;digital-продукта с&nbsp;акцентом на&nbsp;визуал и&nbsp;скорость восприятия</p>
+            <p class="project__done"><strong>Что сделано:</strong> структура, тексты, дизайн, реализация</p>
+          </li>
+          <li class="project">
+            <div class="project__meta">
+              <span class="project__label">Проект 2</span>
+              <h3 class="project__title">Portfolio for Creative Expert</h3>
+            </div>
+            <p class="project__desc">Персональный сайт, отражающий стиль и&nbsp;уровень специалиста</p>
+            <p class="project__done"><strong>Что сделано:</strong> позиционирование, подача, визуальный язык</p>
+          </li>
+          <li class="project">
+            <div class="project__meta">
+              <span class="project__label">Проект 3</span>
+              <h3 class="project__title">Bot &amp; Funnel Page</h3>
+            </div>
+            <p class="project__desc">Страница под&nbsp;воронку с&nbsp;упором на&nbsp;конверсию</p>
+            <p class="project__done"><strong>Что сделано:</strong> логика, тексты, CTA, визуальная структура</p>
+          </li>
+          <li class="project">
+            <div class="project__meta">
+              <span class="project__label">Проект 4</span>
+              <h3 class="project__title">Concept Site for AI Creator</h3>
+            </div>
+            <p class="project__desc">Концептуальный сайт с&nbsp;акцентом на&nbsp;вау-эффект</p>
+            <p class="project__done"><strong>Что сделано:</strong> идея, структура, визуальное направление</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="why" class="section section--why">
+      <div class="container">
+        <h2 class="section__title">Почему выбирают меня</h2>
+        <p class="why__lead">Потому что я вижу проект целиком</p>
+        <div class="why__cols">
+          <div>
+            <p class="why__subtitle">Не только:</p>
+            <ul class="why__list">
+              <li>как&nbsp;это реализовать</li>
+            </ul>
+          </div>
+          <div>
+            <p class="why__subtitle">Но и:</p>
+            <ul class="why__list">
+              <li>как&nbsp;это воспринимается</li>
+              <li>где&nbsp;цепляется внимание</li>
+              <li>что&nbsp;запоминается</li>
+              <li>почему&nbsp;это выглядит сильнее и&nbsp;дороже</li>
+            </ul>
+          </div>
+        </div>
+        <p class="why__merge">Я соединяю: <span>эстетику + структуру + digital-мышление + AI</span></p>
+      </div>
+    </section>
+
+    <section id="stack" class="section section--stack">
+      <div class="container">
+        <h2 class="section__title">Инструменты</h2>
+        <ul class="stack">
+          <li>ChatGPT</li>
+          <li>Cursor</li>
+          <li>HTML / CSS / JS</li>
+          <li>React</li>
+          <li>Tailwind</li>
+          <li>Framer Motion</li>
+          <li>Figma</li>
+          <li>Tilda / Webflow / custom</li>
+          <li>Telegram / Bots / AI tools</li>
+        </ul>
+        <p class="stack__note">Главный инструмент — не&nbsp;стек, а&nbsp;вкус, насмотренность и&nbsp;умение собрать цельное впечатление</p>
+      </div>
+    </section>
+
+    <section id="audience" class="section section--audience">
+      <div class="container">
+        <h2 class="section__title">Кому подойдёт моя работа</h2>
+        <ul class="audience-list">
+          <li>экспертам</li>
+          <li>креаторам</li>
+          <li>digital-проектам</li>
+          <li>AI-продуктам</li>
+          <li>бизнесу, где&nbsp;важна автоматизация</li>
+          <li>тем, кому&nbsp;нужен сайт с&nbsp;характером</li>
+          <li>тем, кто&nbsp;не хочет шаблонные решения</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section section--quote" aria-labelledby="quote-text">
+      <div class="container">
+        <blockquote class="quote" id="quote-text">
+          <p>Хороший сайт — это не&nbsp;просто аккуратная вёрстка.<br />Это энергия, форма и&nbsp;ощущение живого проекта</p>
+        </blockquote>
+      </div>
+    </section>
+
+    <section id="cta" class="section section--cta">
+      <div class="container cta__inner">
+        <h2 class="section__title section__title--cta">Если нужен сайт или&nbsp;AI-решение, которое выглядит сильно и&nbsp;работает — давай соберём</h2>
+        <p class="cta__text">Помогу с&nbsp;концепцией, структурой, визуалом и&nbsp;автоматизацией<br />От&nbsp;идеи до&nbsp;готового продукта</p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="#contact">Связаться</a>
+          <a class="btn btn--ghost" href="#projects">Смотреть проекты</a>
+        </div>
+      </div>
+    </section>
+
+    <footer id="contact" class="site-footer">
+      <div class="container">
+        <h2 class="footer__title">Контакты</h2>
+        <ul class="contacts">
+          <li>
+            <span class="contacts__label">Telegram</span>
+            <a href="https://t.me/fmariW" rel="noopener noreferrer" target="_blank">@fmariW</a>
+          </li>
+          <li>
+            <span class="contacts__label">Телефон</span>
+            <a href="tel:+79789379670">+7 978 937 96 70</a>
+          </li>
+          <li>
+            <span class="contacts__label">VK</span>
+            <a href="https://vk.com/clubfmbot" rel="noopener noreferrer" target="_blank">vk.com/clubfmbot</a>
+          </li>
+          <li>
+            <span class="contacts__label">Лендинг</span>
+            <a href="https://fmari3112-ai.github.io/LENDING_AL/" rel="noopener noreferrer" target="_blank">fmari3112-ai.github.io/LENDING_AL</a>
+          </li>
+        </ul>
+        <p class="footer__copy">© Мария Фищева. Creative Developer.</p>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    (function () {
+      var toggle = document.querySelector('.nav-toggle');
+      var mobile = document.getElementById('nav-mobile');
+      if (!toggle || !mobile) return;
+      toggle.addEventListener('click', function () {
+        var open = mobile.hasAttribute('hidden');
+        if (open) mobile.removeAttribute('hidden');
+        else mobile.setAttribute('hidden', '');
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      mobile.querySelectorAll('a').forEach(function (a) {
+        a.addEventListener('click', function () {
+          mobile.setAttribute('hidden', '');
+          toggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
