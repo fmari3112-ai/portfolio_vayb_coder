@@ -272,9 +272,10 @@ a:hover {
   .hero__image img {
     width: 100%;
     height: auto;
+    max-height: min(72vh, 40rem);
     object-fit: contain;
     object-position: bottom center;
-    transform: scale(1.38);
+    transform: scale(1.18);
     transform-origin: bottom center;
   }
 }
@@ -653,43 +654,28 @@ a:hover {
   font-family: var(--font);
   font-size: clamp(1.125rem, 2.2vw, 1.3125rem);
   font-weight: 600;
-  margin: 0 0 var(--space-4);
+  margin: 0 0 var(--space-3);
   color: var(--text);
-  max-width: 28ch;
+  max-width: var(--measure);
   line-height: 1.45;
   letter-spacing: -0.02em;
 }
 
-.why__cols {
-  display: grid;
-  gap: var(--space-4);
-  margin-bottom: var(--space-4);
-}
-
-@media (min-width: 640px) {
-  .why__cols {
-    grid-template-columns: 1fr 1.2fr;
-  }
-}
-
-.why__subtitle {
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--text-soft);
-  margin: 0 0 var(--space-2);
-}
-
 .why__list {
-  margin: 0;
-  padding-left: 1.125rem;
+  margin: 0 0 var(--space-5);
+  padding: 0 0 0 1.25rem;
+  max-width: var(--measure);
   color: var(--text-muted);
-  line-height: 1.65;
+  line-height: 1.7;
 }
 
 .why__list li {
-  margin-bottom: 0.375rem;
+  margin-bottom: 0.85rem;
+  padding-left: 0.15rem;
+}
+
+.why__list li:last-child {
+  margin-bottom: 0;
 }
 
 .why__merge {
