@@ -48,8 +48,6 @@
   --max: 1080px;
   --header-h: 56px;
   --measure: 65ch;
-
-  --site-code-drift: 140s;
 }
 
 *,
@@ -74,9 +72,9 @@ html {
     transition-duration: 0.01ms !important;
   }
 
-  .site-code-bg__track {
+  .matrix-track {
     animation: none !important;
-    transform: translate3d(0, -8%, 0);
+    transform: translateY(-15%);
   }
 }
 
@@ -92,86 +90,72 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* Глобальный фон: колонки «кода» — тестовая видимость, за контентом */
+/* Фон «матрица»: падающие колонки символов */
 .site-code-bg {
   position: fixed;
   inset: 0;
-  width: 100%;
-  height: 100%;
   z-index: 0;
   pointer-events: none;
   overflow: hidden;
-  opacity: 0.18;
-  color: #6eb8d4;
-}
-
-.site-code-bg__cols {
   display: flex;
-  justify-content: space-between;
-  gap: clamp(0.5rem, 2vw, 1.25rem);
+  justify-content: space-around;
+  align-items: stretch;
+  width: 100%;
   height: 100%;
-  min-height: 100vh;
-  padding-inline: clamp(0.5rem, 2vw, 1rem);
-  box-sizing: border-box;
 }
 
-.site-code-bg__col {
+.matrix-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   flex: 1 1 0;
   min-width: 0;
-  overflow: hidden;
   height: 100%;
+  max-height: 100vh;
+  overflow: hidden;
+  font-family: ui-monospace, "Cascadia Code", "Consolas", "Courier New", monospace;
+  font-size: 14px;
+  color: #00eaff;
+  opacity: 0.25;
 }
 
-.site-code-bg__track {
-  display: block;
-  width: 100%;
-  animation: site-code-bg-drift var(--site-code-drift) linear infinite;
+.matrix-track {
+  animation: matrixFall linear infinite;
   will-change: transform;
 }
 
-.site-code-bg__track--b {
-  animation-duration: calc(var(--site-code-drift) * 0.85);
-  animation-direction: reverse;
+.matrix-col:nth-child(odd) .matrix-track {
+  animation-duration: 6s;
 }
 
-.site-code-bg__track--c {
-  animation-duration: calc(var(--site-code-drift) * 1.1);
+.matrix-col:nth-child(even) .matrix-track {
+  animation-duration: 9s;
 }
 
-.site-code-bg__track--d {
-  animation-duration: calc(var(--site-code-drift) * 0.92);
-  animation-direction: reverse;
+.matrix-track span {
+  display: block;
+  line-height: 16px;
 }
 
-.site-code-bg__track--e {
-  animation-duration: calc(var(--site-code-drift) * 1.05);
-}
-
-.site-code-bg__text {
-  margin: 0;
-  padding: 0;
-  font-family: ui-monospace, "Cascadia Code", "Consolas", "Courier New", monospace;
-  font-size: 12px;
-  line-height: 1.15;
-  letter-spacing: 0.02em;
-  white-space: pre-wrap;
-  word-break: break-word;
-  color: inherit;
-}
-
-@keyframes site-code-bg-drift {
-  from {
-    transform: translate3d(0, 0, 0);
+@keyframes matrixFall {
+  0% {
+    transform: translateY(-100%);
   }
-  to {
-    transform: translate3d(0, -50%, 0);
+  100% {
+    transform: translateY(100%);
   }
 }
 
-#main,
-.site-footer {
+header,
+main,
+section {
   position: relative;
-  z-index: 1;
+  z-index: 2;
+}
+
+footer {
+  position: relative;
+  z-index: 2;
 }
 
 #main {
