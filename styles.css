@@ -204,7 +204,7 @@ a:hover {
   position: relative;
   display: grid;
   gap: var(--space-4);
-  align-items: center;
+  align-items: stretch;
   padding-block: clamp(var(--space-5), 11vw, var(--space-7));
   padding-inline: clamp(1.125rem, 4vw, 1.75rem);
   max-width: var(--max);
@@ -216,35 +216,40 @@ a:hover {
   .hero {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: var(--space-5);
-    align-items: end;
+    align-items: stretch;
   }
 }
 
 .hero__content {
   min-width: 0;
+  align-self: start;
 }
 
 .hero__image {
   min-width: 0;
   display: flex;
-  align-items: flex-end;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
   margin-bottom: 0;
+  min-height: 0;
+  align-self: stretch;
 }
 
 @media (min-width: 960px) {
   .hero__image {
-    align-self: end;
+    height: 100%;
   }
 }
 
 .hero__image img {
   display: block;
   width: 100%;
+  max-height: none;
   height: auto;
   object-fit: contain;
   object-position: bottom center;
-  transform: scale(1.18);
+  transform: scale(1.22);
   transform-origin: bottom center;
 }
 
