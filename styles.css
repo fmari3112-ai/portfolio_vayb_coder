@@ -367,6 +367,9 @@ a:hover {
 }
 
 .hero__image {
+  --hero-touch-x: 26%;
+  --hero-touch-y: 34%;
+
   position: relative;
   z-index: 1;
   min-width: 0;
@@ -379,7 +382,95 @@ a:hover {
   align-self: stretch;
 }
 
+/* Точка у «пальца»: мягкое ядро + glow; линии влево — digital / UI */
+.hero__image::before,
+.hero__image::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.hero__image::before {
+  z-index: 3;
+  left: var(--hero-touch-x);
+  top: var(--hero-touch-y);
+  width: 12px;
+  height: 12px;
+  margin: -6px 0 0 -6px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 40% 38%,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(185, 225, 245, 0.75) 28%,
+    rgba(100, 175, 220, 0.45) 52%,
+    transparent 72%
+  );
+  box-shadow:
+    0 0 10px 3px rgba(140, 200, 235, 0.45),
+    0 0 28px 10px rgba(80, 150, 210, 0.2),
+    0 0 48px 16px rgba(60, 120, 190, 0.08);
+  animation: hero-touch-pulse 3.2s ease-in-out infinite;
+}
+
+.hero__image::after {
+  z-index: 2;
+  left: var(--hero-touch-x);
+  top: var(--hero-touch-y);
+  width: min(5.5rem, 42vw);
+  height: 3.25rem;
+  transform: translate(calc(-100% + 5px), -50%);
+  opacity: 0.5;
+  background: linear-gradient(
+    90deg,
+    rgba(120, 185, 225, 0.12) 0%,
+    rgba(100, 170, 215, 0.22) 35%,
+    transparent 100%
+  );
+  mask-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 7px,
+    #000 7px,
+    #000 8px
+  );
+  -webkit-mask-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 7px,
+    #000 7px,
+    #000 8px
+  );
+  filter: blur(0.35px);
+  animation: hero-touch-lines 4.5s ease-in-out infinite;
+}
+
+@keyframes hero-touch-pulse {
+  0%,
+  100% {
+    opacity: 0.88;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+}
+
+@keyframes hero-touch-lines {
+  0%,
+  100% {
+    opacity: 0.38;
+    transform: translate(calc(-100% + 5px), -50%);
+  }
+  50% {
+    opacity: 0.58;
+    transform: translate(calc(-100% + 1px), -50%);
+  }
+}
+
 .hero__image img {
+  position: relative;
+  z-index: 1;
   display: block;
   width: 100%;
   max-height: none;
@@ -405,6 +496,9 @@ a:hover {
   }
 
   .hero__image {
+    --hero-touch-x: 20%;
+    --hero-touch-y: 32%;
+
     position: absolute;
     right: 0;
     bottom: 0;
