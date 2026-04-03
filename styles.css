@@ -209,12 +209,14 @@ a:hover {
   padding-inline: clamp(1.125rem, 4vw, 1.75rem);
   max-width: var(--max);
   margin-inline: auto;
+  overflow-x: clip;
 }
 
 @media (min-width: 960px) {
   .hero {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: var(--space-5);
+    align-items: end;
   }
 }
 
@@ -224,12 +226,26 @@ a:hover {
 
 .hero__image {
   min-width: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  margin-bottom: 0;
+}
+
+@media (min-width: 960px) {
+  .hero__image {
+    align-self: end;
+  }
 }
 
 .hero__image img {
   display: block;
   width: 100%;
   height: auto;
+  object-fit: contain;
+  object-position: bottom center;
+  transform: scale(1.18);
+  transform-origin: bottom center;
 }
 
 .hero__eyebrow {
