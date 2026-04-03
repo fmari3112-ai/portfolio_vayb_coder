@@ -1,25 +1,39 @@
 :root {
-  --bg-main: #061a17;
-  --bg-gradient: linear-gradient(135deg, #0b2a24 0%, #061a17 100%);
-  --accent: #3fe0c5;
-  --accent-secondary: #6a7cff;
-  --text-main: #e7f5f2;
-  --text-secondary: #8aa5a0;
+  /* База и текст — как hero (холодный сине-бирюзовый) */
+  --bg-main: #040a10;
+  --bg-gradient: linear-gradient(168deg, #040910 0%, #061420 38%, #07182a 72%, #050c14 100%);
+  --text-main: #d8e8ec;
+  --text-secondary: #7699a8;
 
-  --bg-surface: #0b2a24;
-  --bg-card: #0b2620;
-  --border: rgba(231, 245, 242, 0.08);
-  --border-hover: rgba(231, 245, 242, 0.12);
-  --border-strong: rgba(231, 245, 242, 0.1);
-  --header-bg: rgba(6, 26, 23, 0.82);
-  --surface-glass: rgba(231, 245, 242, 0.04);
-  --accent-soft-bg: rgba(63, 224, 197, 0.12);
-  --accent-soft-border: rgba(63, 224, 197, 0.22);
-  --accent-glow: 0 0 20px rgba(63, 224, 197, 0.4);
-  --stack-pill-bg: rgba(231, 245, 242, 0.03);
+  --accent: #58d2c8;
+  --accent-secondary: #8a9ee8;
 
-  --bg: var(--bg-surface);
-  --bg-section: var(--bg-main);
+  --bg-surface: #040a10;
+  --bg-card: #0a1624;
+  --border: rgba(175, 210, 225, 0.16);
+  --border-hover: rgba(185, 215, 228, 0.24);
+  --border-strong: rgba(195, 220, 235, 0.22);
+  --header-bg: rgba(4, 10, 16, 0.85);
+  --surface-glass: rgba(130, 170, 195, 0.08);
+  --accent-soft-bg: rgba(77, 200, 190, 0.12);
+  --accent-soft-border: rgba(120, 190, 215, 0.28);
+  --accent-glow: 0 0 28px rgba(95, 175, 195, 0.35);
+  --stack-pill-bg: rgba(175, 210, 225, 0.06);
+
+  --bg: #040a10;
+  --bg-section: #040a10;
+
+  /* Кнопки — та же градиентная палитра, что в hero */
+  --btn-top: #4dc8be;
+  --btn-mid: #3aa8c4;
+  --btn-deep: #4d7eb8;
+  --btn-text: #041016;
+  --btn-shadow: 0 0 28px rgba(95, 175, 195, 0.32);
+  --btn-hover-top: #58d2c8;
+  --btn-hover-mid: #42b4cc;
+  --btn-hover-deep: #5a88c4;
+  --ghost-border: rgba(175, 210, 225, 0.16);
+  --ghost-hover-bg: rgba(130, 170, 195, 0.08);
 
   --radius: 12px;
   --radius-sm: 8px;
@@ -66,9 +80,13 @@ body {
   font-weight: 400;
   line-height: 1.6;
   color: var(--text-main);
-  background: var(--bg-gradient);
+  background: var(--bg-main);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+#main {
+  background: transparent;
 }
 
 img {
@@ -190,7 +208,7 @@ a:hover {
   padding: var(--space-3) clamp(1.125rem, 4vw, 1.75rem) var(--space-4);
   gap: var(--space-2);
   border-bottom: 1px solid var(--border);
-  background: var(--bg-section);
+  background: transparent;
 }
 
 .nav-mobile[hidden] {
@@ -210,9 +228,20 @@ a:hover {
   }
 }
 
-/* Hero */
+/* Hero — холодная глубина, только эта секция */
 .hero {
+  --hero-text: var(--text-main);
+  --hero-muted: var(--text-secondary);
+  --hero-btn-top: var(--btn-top);
+  --hero-btn-mid: var(--btn-mid);
+  --hero-btn-deep: var(--btn-deep);
+  --hero-btn-text: var(--btn-text);
+  --hero-btn-shadow: var(--btn-shadow);
+  --hero-ghost-border: var(--ghost-border);
+  --hero-ghost-hover-bg: var(--ghost-hover-bg);
+
   position: relative;
+  isolation: isolate;
   display: grid;
   gap: var(--space-4);
   align-items: stretch;
@@ -221,14 +250,52 @@ a:hover {
   max-width: var(--max);
   margin-inline: auto;
   overflow-x: clip;
+  background-color: #040a10;
+  background-image:
+    radial-gradient(ellipse 72% 52% at 32% 58%, rgba(95, 175, 195, 0.065) 0%, transparent 58%),
+    radial-gradient(ellipse 75% 50% at 15% 28%, rgba(88, 108, 168, 0.11) 0%, transparent 58%),
+    radial-gradient(ellipse 55% 45% at 92% 68%, rgba(72, 168, 188, 0.1) 0%, transparent 52%),
+    radial-gradient(ellipse 65% 42% at 48% 8%, rgba(62, 98, 148, 0.07) 0%, transparent 48%),
+    linear-gradient(168deg, #040910 0%, #061420 38%, #07182a 72%, #050c14 100%);
+}
+
+.hero::before,
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Слабое свечение слева сверху (холодный сине-фиолетовый) */
+.hero::before {
+  background: radial-gradient(
+    ellipse 85% 55% at 8% 12%,
+    rgba(100, 125, 195, 0.09) 0%,
+    transparent 62%
+  );
+}
+
+/* Мягкое свечение в правой нижней зоне за фото (бирюзово-голубой) */
+.hero::after {
+  background: radial-gradient(
+    ellipse 70% 50% at 95% 88%,
+    rgba(70, 185, 195, 0.1) 0%,
+    transparent 58%
+  );
 }
 
 .hero__content {
+  position: relative;
+  z-index: 1;
   min-width: 0;
   align-self: start;
 }
 
 .hero__image {
+  position: relative;
+  z-index: 1;
   min-width: 0;
   display: flex;
   flex-direction: column;
@@ -252,15 +319,12 @@ a:hover {
 
 @media (min-width: 960px) {
   .hero {
-    position: relative;
     display: block;
     min-height: clamp(28rem, 72vh, 48rem);
     overflow: hidden;
   }
 
   .hero__content {
-    position: relative;
-    z-index: 1;
     width: calc((100% - var(--space-5)) / 2);
     max-width: calc((100% - var(--space-5)) / 2);
     margin-right: auto;
@@ -296,7 +360,7 @@ a:hover {
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--text-secondary);
+  color: var(--hero-muted);
   margin: 0 0 var(--space-3);
   max-width: 42ch;
   line-height: 1.5;
@@ -312,14 +376,14 @@ a:hover {
   max-width: 38ch;
   text-wrap: balance;
   white-space: pre-line;
-  color: var(--text-main);
+  color: var(--hero-text);
 }
 
 .hero__lead {
   font-size: clamp(1rem, 1.8vw, 1.125rem);
   font-weight: 400;
   line-height: 1.65;
-  color: var(--text-secondary);
+  color: var(--hero-muted);
   max-width: var(--measure);
   margin: 0 0 var(--space-4);
   white-space: pre-line;
@@ -348,25 +412,37 @@ a:hover {
 }
 
 .btn--primary {
-  background: var(--accent);
-  color: var(--bg-main);
+  background: linear-gradient(
+    155deg,
+    var(--btn-top) 0%,
+    var(--btn-mid) 48%,
+    var(--btn-deep) 100%
+  );
+  color: var(--btn-text);
+  border: 1px solid rgba(160, 210, 225, 0.22);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.07) inset;
 }
 
 .btn--primary:hover {
-  background: var(--accent);
-  color: var(--bg-main);
-  box-shadow: var(--accent-glow);
+  background: linear-gradient(
+    155deg,
+    var(--btn-hover-top) 0%,
+    var(--btn-hover-mid) 48%,
+    var(--btn-hover-deep) 100%
+  );
+  color: var(--btn-text);
+  box-shadow: var(--btn-shadow), 0 1px 0 rgba(255, 255, 255, 0.09) inset;
 }
 
 .btn--ghost {
   background: transparent;
   color: var(--text-main);
-  border-color: var(--border);
+  border-color: var(--ghost-border);
 }
 
 .btn--ghost:hover {
   border-color: var(--border-hover);
-  background: var(--surface-glass);
+  background: var(--ghost-hover-bg);
   color: var(--text-main);
 }
 
@@ -389,42 +465,42 @@ a:hover {
 }
 
 .section--about {
-  background: var(--bg-section);
+  background: transparent;
 }
 
 .section--skills {
-  background: var(--bg);
+  background: transparent;
 }
 
 .section--approach {
-  background: var(--bg-section);
+  background: transparent;
 }
 
 .section--projects {
-  background: var(--bg);
+  background: transparent;
 }
 
 .section--why {
-  background: var(--bg-section);
+  background: transparent;
 }
 
 .section--stack {
-  background: var(--bg);
+  background: transparent;
 }
 
 .section--audience {
-  background: var(--bg-section);
+  background: transparent;
 }
 
 .section--quote {
   padding-block: clamp(var(--space-4), 7vw, var(--space-5));
   border-top: 1px solid var(--border);
-  background: var(--bg);
+  background: transparent;
 }
 
 .section--cta {
   padding-block: clamp(var(--space-5), 10vw, var(--space-6));
-  background: var(--bg-section);
+  background: transparent;
   border-top: 1px solid var(--border);
 }
 
@@ -828,7 +904,7 @@ a:hover {
 .site-footer {
   padding-block: var(--space-5);
   border-top: 1px solid var(--border);
-  background: var(--bg-main);
+  background: transparent;
 }
 
 .footer__title {
