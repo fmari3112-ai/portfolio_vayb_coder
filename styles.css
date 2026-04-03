@@ -76,6 +76,16 @@ html {
     animation: none !important;
     transform: translateY(-15%);
   }
+
+  .hero-finger-stream__track,
+  .hero-finger-stream__blend,
+  .hero-finger-touch {
+    animation: none !important;
+  }
+
+  .hero-finger-touch {
+    opacity: 0.92;
+  }
 }
 
 body {
@@ -367,8 +377,12 @@ a:hover {
 }
 
 .hero__image {
-  --hero-touch-x: 26%;
-  --hero-touch-y: 34%;
+  --hf-touch-x: 28%;
+  --hf-touch-y: 36%;
+  --hf-scene-left: 6%;
+  --hf-scene-top: 12%;
+  --hf-scene-w: min(34%, 10.5rem);
+  --hf-scene-h: min(62%, 24rem);
 
   position: relative;
   z-index: 1;
@@ -382,95 +396,181 @@ a:hover {
   align-self: stretch;
 }
 
-/* Точка у «пальца»: мягкое ядро + glow; линии влево — digital / UI */
-.hero__image::before,
-.hero__image::after {
-  content: "";
+/* Локальная digital-сцена: 7 колонок + зона касания (поверх фото только в маске сцены) */
+.hero-finger-stream {
   position: absolute;
-  pointer-events: none;
-}
-
-.hero__image::before {
+  inset: 0;
   z-index: 3;
-  left: var(--hero-touch-x);
-  top: var(--hero-touch-y);
-  width: 12px;
-  height: 12px;
-  margin: -6px 0 0 -6px;
-  border-radius: 50%;
-  background: radial-gradient(
-    circle at 40% 38%,
-    rgba(255, 255, 255, 0.95) 0%,
-    rgba(185, 225, 245, 0.75) 28%,
-    rgba(100, 175, 220, 0.45) 52%,
-    transparent 72%
-  );
-  box-shadow:
-    0 0 10px 3px rgba(140, 200, 235, 0.45),
-    0 0 28px 10px rgba(80, 150, 210, 0.2),
-    0 0 48px 16px rgba(60, 120, 190, 0.08);
-  animation: hero-touch-pulse 3.2s ease-in-out infinite;
+  pointer-events: none;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: var(--hf-scene-top) 0 0 var(--hf-scene-left);
+  box-sizing: border-box;
 }
 
-.hero__image::after {
-  z-index: 2;
-  left: var(--hero-touch-x);
-  top: var(--hero-touch-y);
-  width: min(5.5rem, 42vw);
-  height: 3.25rem;
-  transform: translate(calc(-100% + 5px), -50%);
-  opacity: 0.5;
-  background: linear-gradient(
-    90deg,
-    rgba(120, 185, 225, 0.12) 0%,
-    rgba(100, 170, 215, 0.22) 35%,
+.hero-finger-stream__inner {
+  --hf-hot-x: 74%;
+  --hf-hot-y: 36%;
+
+  position: relative;
+  width: var(--hf-scene-w);
+  height: var(--hf-scene-h);
+  max-height: 78%;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 10px;
+  -webkit-mask-image: radial-gradient(
+    ellipse 92% 88% at 72% 38%,
+    #000 0%,
+    #000 70%,
     transparent 100%
   );
-  mask-image: repeating-linear-gradient(
-    to bottom,
-    transparent 0,
-    transparent 7px,
-    #000 7px,
-    #000 8px
+  mask-image: radial-gradient(
+    ellipse 92% 88% at 72% 38%,
+    #000 0%,
+    #000 70%,
+    transparent 100%
   );
-  -webkit-mask-image: repeating-linear-gradient(
-    to bottom,
-    transparent 0,
-    transparent 7px,
-    #000 7px,
-    #000 8px
-  );
-  filter: blur(0.35px);
-  animation: hero-touch-lines 4.5s ease-in-out infinite;
 }
 
-@keyframes hero-touch-pulse {
+.hero-finger-stream__cols {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: stretch;
+  gap: 2px;
+  height: 100%;
+  padding-inline: 2px;
+  box-sizing: border-box;
+}
+
+.hero-finger-stream__col {
+  flex: 0 0 auto;
+  width: 0.55rem;
+  min-width: 0;
+  overflow: hidden;
+  height: 100%;
+}
+
+.hero-finger-stream__track {
+  display: block;
+  width: 100%;
+  animation: hero-finger-fall 34s linear infinite;
+  will-change: transform;
+}
+
+.hero-finger-stream__col:nth-child(odd) .hero-finger-stream__track {
+  animation-duration: 30s;
+}
+
+.hero-finger-stream__col:nth-child(even) .hero-finger-stream__track {
+  animation-duration: 38s;
+}
+
+.hero-finger-stream__track span {
+  display: block;
+  font-family: ui-monospace, "Cascadia Code", "Consolas", "Courier New", monospace;
+  font-size: 8.5px;
+  line-height: 10px;
+  text-align: center;
+  color: rgba(115, 175, 205, 0.38);
+  font-weight: 400;
+}
+
+.hero-finger-stream__post {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    transparent 40%,
+    rgba(70, 130, 175, 0.1) 58%,
+    rgba(55, 110, 160, 0.16) 78%,
+    rgba(45, 95, 150, 0.12) 100%
+  );
+  mix-blend-mode: soft-light;
+}
+
+.hero-finger-stream__blend {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background: radial-gradient(
+    circle 32px at var(--hf-hot-x) var(--hf-hot-y),
+    rgba(210, 245, 255, 0.42) 0%,
+    rgba(140, 200, 230, 0.22) 38%,
+    rgba(100, 170, 210, 0.08) 55%,
+    transparent 72%
+  );
+  mix-blend-mode: soft-light;
+  animation: hero-finger-blend-pulse 3.4s ease-in-out infinite;
+}
+
+@keyframes hero-finger-fall {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes hero-finger-blend-pulse {
   0%,
   100% {
-    opacity: 0.88;
+    opacity: 0.85;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.hero-finger-touch {
+  position: absolute;
+  left: var(--hf-touch-x);
+  top: var(--hf-touch-y);
+  width: 9px;
+  height: 9px;
+  margin: -4.5px 0 0 -4.5px;
+  border-radius: 50%;
+  z-index: 4;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at 35% 32%,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(185, 228, 248, 0.75) 35%,
+    rgba(110, 185, 220, 0.35) 62%,
+    transparent 78%
+  );
+  box-shadow:
+    0 0 8px 2px rgba(150, 210, 240, 0.4),
+    0 0 22px 8px rgba(90, 165, 210, 0.18),
+    0 0 40px 14px rgba(70, 140, 195, 0.07);
+  animation: hero-finger-touch-pulse 3.2s ease-in-out infinite;
+}
+
+@keyframes hero-finger-touch-pulse {
+  0%,
+  100% {
+    opacity: 0.9;
     transform: scale(1);
   }
   50% {
     opacity: 1;
-    transform: scale(1.06);
-  }
-}
-
-@keyframes hero-touch-lines {
-  0%,
-  100% {
-    opacity: 0.38;
-    transform: translate(calc(-100% + 5px), -50%);
-  }
-  50% {
-    opacity: 0.58;
-    transform: translate(calc(-100% + 1px), -50%);
+    transform: scale(1.05);
   }
 }
 
 .hero__image img {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   display: block;
   width: 100%;
   max-height: none;
@@ -496,8 +596,12 @@ a:hover {
   }
 
   .hero__image {
-    --hero-touch-x: 20%;
-    --hero-touch-y: 32%;
+    --hf-touch-x: 22%;
+    --hf-touch-y: 34%;
+    --hf-scene-left: 4%;
+    --hf-scene-top: 10%;
+    --hf-scene-w: min(36%, 11rem);
+    --hf-scene-h: min(64%, 26rem);
 
     position: absolute;
     right: 0;
@@ -519,6 +623,11 @@ a:hover {
     object-position: bottom center;
     transform: scale(1.18);
     transform-origin: bottom center;
+  }
+
+  .hero-finger-stream__inner {
+    --hf-hot-x: 72%;
+    --hf-hot-y: 34%;
   }
 }
 
