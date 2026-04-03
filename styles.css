@@ -49,8 +49,7 @@
   --header-h: 56px;
   --measure: 65ch;
 
-  --code-bg-drift-slow: 220s;
-  --code-bg-drift-fast: 150s;
+  --site-code-drift: 140s;
 }
 
 *,
@@ -75,14 +74,9 @@ html {
     transition-duration: 0.01ms !important;
   }
 
-  .page-code-bg__drift,
-  .page-code-bg__drift--alt {
+  .site-code-bg__track {
     animation: none !important;
-    transform: translate3d(0, -12%, 0);
-  }
-
-  .page-code-bg {
-    opacity: 0.5;
+    transform: translate3d(0, -8%, 0);
   }
 }
 
@@ -98,8 +92,8 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* Глобальный фон: «бегущий код» — за всем контентом */
-.page-code-bg {
+/* Глобальный фон: колонки «кода» — тестовая видимость, за контентом */
+.site-code-bg {
   position: fixed;
   inset: 0;
   width: 100%;
@@ -107,67 +101,65 @@ body {
   z-index: 0;
   pointer-events: none;
   overflow: hidden;
-  isolation: isolate;
-  -webkit-mask-image: radial-gradient(
-    ellipse 88% 78% at 50% 48%,
-    #000 0%,
-    #000 58%,
-    transparent 100%
-  );
-  mask-image: radial-gradient(
-    ellipse 88% 78% at 50% 48%,
-    #000 0%,
-    #000 58%,
-    transparent 100%
-  );
+  opacity: 0.18;
+  color: #6eb8d4;
 }
 
-.page-code-bg__layer {
-  position: absolute;
-  inset: -8% -4%;
-  width: auto;
-  height: auto;
-  min-height: 116%;
-  min-width: 108%;
+.site-code-bg__cols {
+  display: flex;
+  justify-content: space-between;
+  gap: clamp(0.5rem, 2vw, 1.25rem);
+  height: 100%;
+  min-height: 100vh;
+  padding-inline: clamp(0.5rem, 2vw, 1rem);
+  box-sizing: border-box;
 }
 
-.page-code-bg__layer--back {
-  opacity: 0.07;
-  color: rgba(130, 175, 210, 0.95);
-  filter: blur(0.35px);
+.site-code-bg__col {
+  flex: 1 1 0;
+  min-width: 0;
+  overflow: hidden;
+  height: 100%;
 }
 
-.page-code-bg__layer--front {
-  opacity: 0.055;
-  color: rgba(150, 165, 220, 0.92);
-  filter: blur(0.25px);
-}
-
-.page-code-bg__drift {
+.site-code-bg__track {
   display: block;
-  animation: page-code-bg-drift var(--code-bg-drift-slow) linear infinite;
+  width: 100%;
+  animation: site-code-bg-drift var(--site-code-drift) linear infinite;
   will-change: transform;
 }
 
-.page-code-bg__drift--alt {
-  animation-duration: var(--code-bg-drift-fast);
+.site-code-bg__track--b {
+  animation-duration: calc(var(--site-code-drift) * 0.85);
   animation-direction: reverse;
 }
 
-.page-code-bg__chunk {
+.site-code-bg__track--c {
+  animation-duration: calc(var(--site-code-drift) * 1.1);
+}
+
+.site-code-bg__track--d {
+  animation-duration: calc(var(--site-code-drift) * 0.92);
+  animation-direction: reverse;
+}
+
+.site-code-bg__track--e {
+  animation-duration: calc(var(--site-code-drift) * 1.05);
+}
+
+.site-code-bg__text {
   margin: 0;
   padding: 0;
   font-family: ui-monospace, "Cascadia Code", "Consolas", "Courier New", monospace;
-  font-size: 0.5625rem;
-  line-height: 1.12;
-  letter-spacing: 0.04em;
+  font-size: 12px;
+  line-height: 1.15;
+  letter-spacing: 0.02em;
   white-space: pre-wrap;
-  word-break: break-all;
-  text-align: justify;
-  text-justify: inter-character;
+  word-break: break-word;
+  color: inherit;
 }
 
-@keyframes page-code-bg-drift {
+@keyframes site-code-bg-drift {
   from {
     transform: translate3d(0, 0, 0);
   }
