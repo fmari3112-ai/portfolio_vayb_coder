@@ -17,6 +17,11 @@
   display: inline-block;
 }
 
+/* Маркер списка аудитории поверх слоя свечения */
+.audience-list li.magic-bento-card::before {
+  z-index: 3;
+}
+
 /* Карточки с эффектом: контент поверх свечения */
 .magic-bento-card {
   --glow-x: 50%;
