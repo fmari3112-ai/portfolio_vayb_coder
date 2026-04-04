@@ -77,9 +77,9 @@ html {
     transform: translateY(-15%);
   }
 
-  .hero-code-veil__track {
+  .hero__code-track {
     animation: none !important;
-    transform: translateY(-20%);
+    transform: translateY(-22%);
   }
 
   .why-scene__code-track {
@@ -376,95 +376,65 @@ a:hover {
   align-self: start;
 }
 
-/* hero-code: локальная «завеса» у кисти, только внутри .hero__image */
-.hero-code-veil {
+/* Hero: вертикальный поток кода — только внутри .hero__image, правая половина */
+.hero__code {
   position: absolute;
   top: 0;
-  right: 15%;
   bottom: 0;
-  left: auto;
-  width: clamp(140px, 11vw, 180px);
+  left: 52%;
+  width: min(140px, 32%);
+  max-width: 152px;
   z-index: 2;
   pointer-events: none;
   overflow: hidden;
   box-sizing: border-box;
 }
 
-.hero-code-veil__cols {
+.hero__code-cols {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: stretch;
-  gap: 4px;
+  gap: 3px;
   height: 100%;
   min-height: 0;
-  padding-inline: 2px;
+  padding: 0 2px;
   box-sizing: border-box;
 }
 
-.hero-code-veil__col {
+.hero__code-col {
   flex: 0 0 auto;
-  width: 0.55rem;
+  width: 0.48rem;
   min-width: 0;
   overflow: hidden;
   height: 100%;
 }
 
-.hero-code-veil__track {
+.hero__code-track {
   display: block;
   width: 100%;
-  animation: hero-code-veil-flow 28s linear infinite;
+  animation: hero-code-flow 32s linear infinite;
   will-change: transform;
 }
 
-.hero-code-veil__col:nth-child(odd) .hero-code-veil__track {
-  animation-duration: 26s;
-}
-
-.hero-code-veil__col:nth-child(even) .hero-code-veil__track {
-  animation-duration: 32s;
-}
-
-.hero-code-veil__track span {
+.hero__code-track span {
   display: block;
   font-family: ui-monospace, "Cascadia Code", "Consolas", "Courier New", monospace;
-  font-size: 9px;
-  line-height: 11px;
+  font-size: 8px;
+  line-height: 10px;
   text-align: center;
   font-weight: 400;
-  color: rgba(130, 210, 238, 0.72);
+  color: rgba(125, 205, 232, 0.68);
 }
 
-/* Дубликат в HTML: движение вверх по треку = поток символов сверху вниз */
-@keyframes hero-code-veil-flow {
+@keyframes hero-code-flow {
   0% {
     transform: translateY(0);
   }
   100% {
     transform: translateY(-50%);
   }
-}
-
-.hero-code-touch {
-  position: absolute;
-  z-index: 3;
-  pointer-events: none;
-  top: 40%;
-  left: 70%;
-  width: 11px;
-  height: 11px;
-  margin: -5px 0 0 -5px;
-  border-radius: 50%;
-  background: radial-gradient(
-    circle at 35% 30%,
-    rgba(220, 250, 255, 0.95) 0%,
-    rgba(120, 210, 235, 0.55) 45%,
-    rgba(70, 160, 200, 0.25) 100%
-  );
-  box-shadow:
-    0 0 10px rgba(120, 220, 245, 0.85),
-    0 0 22px rgba(80, 180, 220, 0.45);
 }
 
 .hero__image {
