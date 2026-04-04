@@ -77,7 +77,7 @@ html {
     transform: translateY(-15%);
   }
 
-  .hero__code-track {
+  .hero__matrix-track {
     animation: none !important;
     transform: translateY(-22%);
   }
@@ -376,64 +376,65 @@ a:hover {
   align-self: start;
 }
 
-/* Hero: вертикальный поток кода — только внутри .hero__image, правая половина */
-.hero__code {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 52%;
-  width: min(140px, 32%);
-  max-width: 152px;
-  z-index: 2;
-  pointer-events: none;
-  overflow: hidden;
-  box-sizing: border-box;
+/* Hero: «матрица» — узкая полоса слева от колонки с изображением (только ≥960px) */
+.hero__matrix {
+  display: none;
 }
 
-.hero__code-cols {
+.hero__matrix-cols {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: stretch;
-  gap: 3px;
-  height: 100%;
+  gap: 2px;
+  flex: 1 1 auto;
+  align-self: stretch;
+  width: 100%;
   min-height: 0;
-  padding: 0 2px;
+  padding: 0 1px;
   box-sizing: border-box;
 }
 
-.hero__code-col {
-  flex: 0 0 auto;
-  width: 0.48rem;
+.hero__matrix-col {
+  flex: 1 1 0;
   min-width: 0;
+  width: auto;
   overflow: hidden;
   height: 100%;
 }
 
-.hero__code-track {
+.hero__matrix-track {
   display: block;
   width: 100%;
-  animation: hero-code-flow 32s linear infinite;
+  animation: hero-matrix-flow 24s linear infinite;
   will-change: transform;
 }
 
-.hero__code-track span {
-  display: block;
-  font-family: ui-monospace, "Cascadia Code", "Consolas", "Courier New", monospace;
-  font-size: 8px;
-  line-height: 10px;
-  text-align: center;
-  font-weight: 400;
-  color: rgba(125, 205, 232, 0.68);
+.hero__matrix-col:nth-child(odd) .hero__matrix-track {
+  animation-duration: 22s;
 }
 
-@keyframes hero-code-flow {
+.hero__matrix-col:nth-child(even) .hero__matrix-track {
+  animation-duration: 28s;
+}
+
+.hero__matrix-track span {
+  display: block;
+  font-family: ui-monospace, "Cascadia Code", "Consolas", "Courier New", monospace;
+  font-size: 7px;
+  line-height: 9px;
+  text-align: center;
+  font-weight: 400;
+  color: rgba(110, 200, 225, 0.55);
+}
+
+@keyframes hero-matrix-flow {
   0% {
-    transform: translateY(0);
+    transform: translateY(-50%);
   }
   100% {
-    transform: translateY(-50%);
+    transform: translateY(0);
   }
 }
 
@@ -470,6 +471,25 @@ a:hover {
     overflow: hidden;
   }
 
+  .hero__matrix {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: var(--hero-matrix-left, 0px);
+    right: auto;
+    width: var(--hero-matrix-width, min(5rem, 88px));
+    margin: 0;
+    padding: 0;
+    /* Выше hero.png, заходит на изображение; текст hero остаётся выше (z-index 4) */
+    z-index: 3;
+    pointer-events: none;
+    overflow: hidden;
+    box-sizing: border-box;
+    min-height: 0;
+  }
+
   .hero__content {
     width: calc((100% - var(--space-5)) / 2);
     max-width: calc((100% - var(--space-5)) / 2);
@@ -488,6 +508,7 @@ a:hover {
     display: block;
     margin: 0;
     min-height: 0;
+    z-index: 1;
   }
 
   .hero__image img {
