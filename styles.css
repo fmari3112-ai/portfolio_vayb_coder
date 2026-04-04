@@ -79,7 +79,7 @@ html {
 
   .hero-code-veil__track {
     animation: none !important;
-    transform: translateY(-25%);
+    transform: translateY(-20%);
   }
 
   .why-scene__code-track {
@@ -376,17 +376,16 @@ a:hover {
   align-self: start;
 }
 
-/* hero-code: только вертикальный поток у руки; высота тянется к верху/низу hero */
+/* hero-code: локальная «завеса» у кисти, только внутри .hero__image */
 .hero-code-veil {
   position: absolute;
-  z-index: 3;
-  pointer-events: none;
-  left: 50%;
-  width: 6rem;
-  margin-left: -3rem;
-  top: clamp(-42vh, -22rem, -7rem);
+  top: 0;
+  right: 15%;
   bottom: 0;
-  height: auto;
+  left: auto;
+  width: clamp(140px, 11vw, 180px);
+  z-index: 2;
+  pointer-events: none;
   overflow: hidden;
   box-sizing: border-box;
 }
@@ -397,16 +396,16 @@ a:hover {
   flex-wrap: nowrap;
   justify-content: center;
   align-items: stretch;
-  gap: 3px;
+  gap: 4px;
   height: 100%;
   min-height: 0;
-  padding-inline: 4px;
+  padding-inline: 2px;
   box-sizing: border-box;
 }
 
 .hero-code-veil__col {
   flex: 0 0 auto;
-  width: 0.42rem;
+  width: 0.55rem;
   min-width: 0;
   overflow: hidden;
   height: 100%;
@@ -415,36 +414,57 @@ a:hover {
 .hero-code-veil__track {
   display: block;
   width: 100%;
-  animation: hero-code-veil-flow 36s linear infinite;
+  animation: hero-code-veil-flow 28s linear infinite;
   will-change: transform;
 }
 
 .hero-code-veil__col:nth-child(odd) .hero-code-veil__track {
-  animation-duration: 32s;
+  animation-duration: 26s;
 }
 
 .hero-code-veil__col:nth-child(even) .hero-code-veil__track {
-  animation-duration: 40s;
+  animation-duration: 32s;
 }
 
 .hero-code-veil__track span {
   display: block;
   font-family: ui-monospace, "Cascadia Code", "Consolas", "Courier New", monospace;
-  font-size: 8px;
-  line-height: 10px;
+  font-size: 9px;
+  line-height: 11px;
   text-align: center;
   font-weight: 400;
-  color: rgba(120, 200, 232, 0.55);
+  color: rgba(130, 210, 238, 0.72);
 }
 
-/* translateY: отрицательное → к 0 (падение сверху вниз, бесшовный цикл по дубликату в HTML) */
+/* Дубликат в HTML: движение вверх по треку = поток символов сверху вниз */
 @keyframes hero-code-veil-flow {
   0% {
-    transform: translateY(-50%);
-  }
-  100% {
     transform: translateY(0);
   }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+.hero-code-touch {
+  position: absolute;
+  z-index: 3;
+  pointer-events: none;
+  top: 40%;
+  left: 70%;
+  width: 11px;
+  height: 11px;
+  margin: -5px 0 0 -5px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 35% 30%,
+    rgba(220, 250, 255, 0.95) 0%,
+    rgba(120, 210, 235, 0.55) 45%,
+    rgba(70, 160, 200, 0.25) 100%
+  );
+  box-shadow:
+    0 0 10px rgba(120, 220, 245, 0.85),
+    0 0 22px rgba(80, 180, 220, 0.45);
 }
 
 .hero__image {
@@ -485,15 +505,6 @@ a:hover {
     max-width: calc((100% - var(--space-5)) / 2);
     margin-right: auto;
     padding-right: 0;
-  }
-
-  .hero-code-veil {
-    left: 11%;
-    right: auto;
-    margin-left: 0;
-    width: 6.5rem;
-    top: clamp(-48vh, -26rem, -9rem);
-    bottom: 0;
   }
 
   .hero__image {
