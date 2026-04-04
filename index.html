@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="magic-bento.css" />
 </head>
 <body>
   <div class="site-code-bg" aria-hidden="true">
@@ -889,31 +890,31 @@
       </div>
     </section>
 
-    <section id="skills" class="section section--skills">
+    <section id="skills" class="section section--skills bento-section">
       <div class="container">
         <h2 class="section__title">Мои&nbsp;направления</h2>
         <ul class="grid-cards">
-          <li class="card">
+          <li class="card magic-bento-card magic-bento-card--border-glow magic-bento-card--particles">
             <h3 class="card__title">Лендинги</h3>
             <p class="card__text">Страницы, которые&nbsp;удерживают внимание, задают ритм и&nbsp;ведут пользователя по&nbsp;смыслу</p>
           </li>
-          <li class="card">
+          <li class="card magic-bento-card magic-bento-card--border-glow magic-bento-card--particles">
             <h3 class="card__title">Портфолио и&nbsp;личные сайты</h3>
             <p class="card__text">Сайты, раскрывающие не&nbsp;только проекты, но&nbsp;и&nbsp;личный стиль и&nbsp;уровень</p>
           </li>
-          <li class="card">
+          <li class="card magic-bento-card magic-bento-card--border-glow magic-bento-card--particles">
             <h3 class="card__title">Визуальные концепции</h3>
             <p class="card__text">Когда важна не&nbsp;просто структура, а&nbsp;атмосфера, характер и&nbsp;подача</p>
           </li>
-          <li class="card">
+          <li class="card magic-bento-card magic-bento-card--border-glow magic-bento-card--particles">
             <h3 class="card__title">AI + Web</h3>
             <p class="card__text">Использую нейросети как&nbsp;инструмент усиления идей&nbsp;и&nbsp;автоматизации</p>
           </li>
-          <li class="card">
+          <li class="card magic-bento-card magic-bento-card--border-glow magic-bento-card--particles">
             <h3 class="card__title">UX и&nbsp;логика</h3>
             <p class="card__text">Продумываю путь пользователя: от&nbsp;первого взгляда до&nbsp;действия</p>
           </li>
-          <li class="card">
+          <li class="card magic-bento-card magic-bento-card--border-glow magic-bento-card--particles">
             <h3 class="card__title">Запуск проектов</h3>
             <p class="card__text">Собираю цельную первую версию без&nbsp;потери качества и&nbsp;смысла</p>
           </li>
@@ -1131,19 +1132,19 @@
       </div>
     </section>
 
-    <section id="stack" class="section section--stack">
+    <section id="stack" class="section section--stack bento-section">
       <div class="container">
         <h2 class="section__title">Инструменты</h2>
         <ul class="stack">
-          <li>ChatGPT</li>
-          <li>Cursor</li>
-          <li>HTML / CSS / JS</li>
-          <li>React</li>
-          <li>Tailwind</li>
-          <li>Framer Motion</li>
-          <li>Figma</li>
-          <li>Tilda / Webflow / custom</li>
-          <li>Telegram / Bots / AI tools</li>
+          <li class="magic-bento-card magic-bento-card--border-glow magic-bento-card--particles"><span class="magic-bento-card__inner">ChatGPT</span></li>
+          <li class="magic-bento-card magic-bento-card--border-glow magic-bento-card--particles"><span class="magic-bento-card__inner">Cursor</span></li>
+          <li class="magic-bento-card magic-bento-card--border-glow magic-bento-card--particles"><span class="magic-bento-card__inner">HTML / CSS / JS</span></li>
+          <li class="magic-bento-card magic-bento-card--border-glow magic-bento-card--particles"><span class="magic-bento-card__inner">React</span></li>
+          <li class="magic-bento-card magic-bento-card--border-glow magic-bento-card--particles"><span class="magic-bento-card__inner">Tailwind</span></li>
+          <li class="magic-bento-card magic-bento-card--border-glow magic-bento-card--particles"><span class="magic-bento-card__inner">Framer Motion</span></li>
+          <li class="magic-bento-card magic-bento-card--border-glow magic-bento-card--particles"><span class="magic-bento-card__inner">Figma</span></li>
+          <li class="magic-bento-card magic-bento-card--border-glow magic-bento-card--particles"><span class="magic-bento-card__inner">Tilda / Webflow / custom</span></li>
+          <li class="magic-bento-card magic-bento-card--border-glow magic-bento-card--particles"><span class="magic-bento-card__inner">Telegram / Bots / AI tools</span></li>
         </ul>
         <p class="stack__note">Главный инструмент — стек, вкус, насмотренность и&nbsp;умение&nbsp;собрать&nbsp;цельное&nbsp;впечатление</p>
       </div>
@@ -1209,6 +1210,8 @@
     </footer>
   </main>
 
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="magic-bento.js"></script>
   <script>
     (function () {
       var toggle = document.querySelector('.nav-toggle');
@@ -1226,6 +1229,35 @@
           toggle.setAttribute('aria-expanded', 'false');
         });
       });
+    })();
+
+    /* Ширина и смещение полосы «матрицы» в hero по границам слов «Направления» → «Работы» в шапке (≥960px) */
+    (function () {
+      var hero = document.getElementById('hero');
+      var start = document.querySelector('.site-header .nav a[href="#skills"]');
+      var end = document.querySelector('.site-header .nav a[href="#projects"]');
+      if (!hero || !start || !end) return;
+
+      function syncHeroMatrixBand() {
+        if (window.matchMedia('(max-width: 959px)').matches) {
+          hero.style.removeProperty('--hero-matrix-left');
+          hero.style.removeProperty('--hero-matrix-width');
+          return;
+        }
+        var hr = hero.getBoundingClientRect();
+        var sr = start.getBoundingClientRect();
+        var er = end.getBoundingClientRect();
+        var left = sr.right - hr.left;
+        var width = er.right - sr.right;
+        hero.style.setProperty('--hero-matrix-left', Math.round(left) + 'px');
+        hero.style.setProperty('--hero-matrix-width', Math.max(0, Math.round(width)) + 'px');
+      }
+
+      syncHeroMatrixBand();
+      window.addEventListener('resize', syncHeroMatrixBand);
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(syncHeroMatrixBand);
+      }
     })();
   </script>
 </body>

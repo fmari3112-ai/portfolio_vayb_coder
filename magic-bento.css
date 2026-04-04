@@ -1,0 +1,94 @@
+/**
+ * Эффекты MagicBento (border glow, spotlight, частицы) под палитру портфолио.
+ * Подключается после styles.css
+ */
+
+:root {
+  --magic-glow-rgb: 88, 210, 200;
+}
+
+.bento-section {
+  position: relative;
+}
+
+.magic-bento-card__inner {
+  position: relative;
+  z-index: 2;
+  display: inline-block;
+}
+
+/* Карточки с эффектом: контент поверх свечения */
+.magic-bento-card {
+  --glow-x: 50%;
+  --glow-y: 50%;
+  --glow-intensity: 0;
+  --glow-radius: 200px;
+  position: relative;
+  overflow: hidden;
+}
+
+.magic-bento-card--particles {
+  overflow: hidden;
+}
+
+.magic-bento-card--border-glow > * {
+  position: relative;
+  z-index: 2;
+}
+
+.magic-bento-card--border-glow::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 6px;
+  background: radial-gradient(
+    var(--glow-radius) circle at var(--glow-x) var(--glow-y),
+    rgba(var(--magic-glow-rgb), calc(var(--glow-intensity) * 0.75)) 0%,
+    rgba(var(--magic-glow-rgb), calc(var(--glow-intensity) * 0.35)) 32%,
+    transparent 62%
+  );
+  border-radius: inherit;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity 0.25s ease;
+}
+
+.magic-bento-card--border-glow:hover::after {
+  opacity: 1;
+}
+
+.magic-bento-card--border-glow:hover {
+  box-shadow:
+    0 4px 24px rgba(4, 20, 40, 0.35),
+    0 0 28px rgba(var(--magic-glow-rgb), 0.12);
+}
+
+.magic-bento-particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.global-spotlight {
+  position: fixed;
+  width: 800px;
+  height: 800px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 35;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: screen;
+  will-change: transform, opacity;
+}

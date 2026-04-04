@@ -508,7 +508,6 @@ a:hover {
     display: block;
     margin: 0;
     min-height: 0;
-    z-index: 1;
   }
 
   .hero__image img {
