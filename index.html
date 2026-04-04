@@ -1548,10 +1548,12 @@
     </section>
 
     <section id="why" class="section section--why">
-      <div class="container">
-        <h2 class="section__title">Почему&nbsp;выбирают меня</h2>
-        <p class="why-scene__intro">Потому&nbsp;что&nbsp;я вижу проект целиком</p>
-      </div>
+      <header class="why-section__head">
+        <div class="container why-section__head-inner">
+          <h2 class="section__title why-section__title">Почему&nbsp;выбирают меня</h2>
+          <p class="why-section__subtitle">Потому&nbsp;что&nbsp;я вижу проект целиком</p>
+        </div>
+      </header>
 
       <div class="why-scene">
         <div class="why-scene__layers" aria-hidden="true">
@@ -1624,41 +1626,39 @@
             <span class="why-scene__ring why-scene__ring--1"></span>
             <span class="why-scene__ring why-scene__ring--2"></span>
             <span class="why-scene__ring why-scene__ring--3"></span>
+            <span class="why-scene__ring why-scene__ring--4"></span>
           </div>
         </div>
 
         <div class="why-scene__content">
           <div class="container why-scene__container">
-            <div class="why-scene__layout">
-              <article class="why-card why-card--c1">
-                <p class="why-card__text">как&nbsp;это реализовать</p>
-              </article>
-              <article class="why-card why-card--c2">
-                <p class="why-card__text">как&nbsp;это воспринимается</p>
-              </article>
-              <article class="why-card why-card--c3">
-                <p class="why-card__text">где&nbsp;цепляется внимание</p>
-              </article>
-              <article class="why-card why-card--c4">
-                <p class="why-card__text">что&nbsp;запоминается</p>
-              </article>
-              <article class="why-card why-card--c5">
-                <p class="why-card__text">почему&nbsp;это выглядит сильнее и&nbsp;дороже</p>
-              </article>
-              <div class="why-scene__figure">
-                <img
-                  class="why-scene__img"
-                  src="images/why/person.png"
-                  width="640"
-                  height="800"
-                  alt=""
-                  loading="lazy"
-                  decoding="async"
-                />
+            <div class="why-scene__stack">
+              <div class="why-scene__composition">
+                <div class="why-scene__arc why-scene__arc--left">
+                  <article class="why-card why-card--pill"><p class="why-card__text">Реализация</p></article>
+                  <article class="why-card why-card--pill"><p class="why-card__text">Восприятие</p></article>
+                  <article class="why-card why-card--pill"><p class="why-card__text">Внимание</p></article>
+                </div>
+                <div class="why-scene__figure">
+                  <img
+                    class="why-scene__img"
+                    src="images/why/person.png"
+                    width="640"
+                    height="800"
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <div class="why-scene__arc why-scene__arc--right">
+                  <article class="why-card why-card--pill"><p class="why-card__text">Запоминаемость</p></article>
+                  <article class="why-card why-card--pill"><p class="why-card__text">Сила образа</p></article>
+                  <article class="why-card why-card--pill"><p class="why-card__text">Ценность проекта</p></article>
+                </div>
               </div>
               <article class="why-card why-card--merge">
                 <p class="why-card__merge">
-                  Я&nbsp;соединяю: <span class="why-card__merge-accent">эстетику + структуру + digital-мышление + AI</span>
+                  Я&nbsp;соединяю: эстетика + структура + digital-мышление + AI
                 </p>
               </article>
             </div>
