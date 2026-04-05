@@ -1334,6 +1334,112 @@ a:hover {
   }
 }
 
+/* Мобильные точечные правки (≤768px): hero + «Почему выбирают меня» — десктоп не затрагивается */
+@media (max-width: 768px) {
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding-block: clamp(var(--space-4), 9vw, var(--space-6)) var(--space-2);
+    gap: var(--space-3);
+  }
+
+  .hero__content {
+    flex: 0 0 auto;
+  }
+
+  .hero__matrix {
+    display: none !important;
+  }
+
+  .hero__image {
+    flex: 0 0 auto;
+    align-self: center;
+    width: 100%;
+    max-width: min(232px, 66vw);
+    margin-bottom: 0;
+  }
+
+  .hero__image img {
+    transform: scale(1);
+    max-height: min(34vh, 196px);
+    width: auto;
+    max-width: 100%;
+    margin: 0 auto;
+    object-fit: contain;
+    object-position: bottom center;
+  }
+
+  /* Кольца — самый задний слой внутри фона; код/свечение поверх них */
+  .why-scene__rings {
+    z-index: 1;
+    opacity: 0.52;
+  }
+
+  .why-scene__glow {
+    z-index: 2;
+  }
+
+  .why-scene__code {
+    z-index: 3;
+  }
+
+  /* Фото → плашка «Я соединяю…» → остальные карточки */
+  .why-scene__stack {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    width: 100%;
+    row-gap: 0;
+  }
+
+  .why-scene__composition {
+    display: contents;
+  }
+
+  .why-scene__figure {
+    order: 1;
+    margin-bottom: 0;
+    z-index: 6;
+  }
+
+  .why-card--merge {
+    order: 2;
+    margin-top: 0;
+    align-self: stretch;
+    width: 100%;
+    max-width: min(48rem, 100%);
+  }
+
+  .why-card--pos-l1 {
+    order: 3;
+  }
+
+  .why-card--pos-l2 {
+    order: 4;
+  }
+
+  .why-card--pos-l3 {
+    order: 5;
+  }
+
+  .why-card--pos-r1 {
+    order: 6;
+  }
+
+  .why-card--pos-r2 {
+    order: 7;
+  }
+
+  .why-card--pos-r3 {
+    order: 8;
+  }
+
+  .why-card--pill {
+    margin-top: var(--space-2);
+  }
+}
+
 /* Stack */
 .stack {
   list-style: none;
