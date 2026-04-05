@@ -1427,6 +1427,27 @@ a:hover {
   .why-card--pill {
     margin-top: var(--space-2);
   }
+
+  /* Кольца остаются в .why-scene__layers; person.png — обязательно поверх этого слоя */
+  .why-scene__layers {
+    z-index: 0;
+  }
+
+  .why-scene__content {
+    position: relative;
+    z-index: 5;
+  }
+
+  .why-scene__figure {
+    position: relative;
+    z-index: 1;
+    isolation: isolate;
+  }
+
+  .why-scene__img {
+    position: relative;
+    z-index: 0;
+  }
 }
 
 /* Stack */
